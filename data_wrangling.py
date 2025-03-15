@@ -24,12 +24,12 @@ with file_path.open("r") as file:
     # csv_data = pd.read_csv(file, header=0)
 
     # if the CSV uses semicolons instead of commas
-    csv_data = pd.read_csv(file,delimiter=';')
+    df = pd.read_csv(file,delimiter=';')
     # print(df.head())
     # print(df.tail())
     # print(df.describe())
     # print(df.info())
-    csv_data.columns = csv_data.columns.str.strip()
+    df.columns = df.columns.str.strip()
 
     # Selecting a single column
     # print(csv_data.get('Region_ID'))
@@ -38,7 +38,19 @@ with file_path.open("r") as file:
     # print(csv_data[['Region_ID', 'Plot_ID']])
 
     # Selecting rows by index (using iloc and loc)
-    # print(csv_data.iloc[0])
-    print(csv_data.loc[0])
+    # print(df.iloc[0])
+    # print(df.loc[0])
+
+    # Check for missing values
+    print(df.isnull().sum())
+
+    # Drop rows with missing valiues and place it in a new variable "df_cleaned"
+    df_cleaned = df.dropna()
+    print(df_cleaned)
+
+    # Fill missing values with mean for numerical data and place it ina new variable called df_filled
+    # df_filled = df.fillna(df.mean())
+
+
 
 
